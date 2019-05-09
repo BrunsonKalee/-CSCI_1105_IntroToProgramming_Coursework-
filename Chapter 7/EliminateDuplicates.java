@@ -15,7 +15,7 @@ public class EliminateDuplicates {
 	int[] result = eliminateDuplicates(numbers);
 	//Display number of distinct 
 	System.out.println("The number of duplicate numbers is: " + result.length);
-	System.out.print("Array duplicates are: ");
+	System.out.print("Array without duplicates are: ");
 	for (int i = 0; i < result.length; i++) {
 		System.out.print(result[i] + " ");
 	}
@@ -29,7 +29,7 @@ public class EliminateDuplicates {
 					if (numbers[j] == numbers[i]) {
 						isInArray = true;
 					}
-				if (isInArray) {
+				if (!isInArray) {
 					temp[duplicateNumber] = numbers[i];
 					duplicateNumber++;
 				}
