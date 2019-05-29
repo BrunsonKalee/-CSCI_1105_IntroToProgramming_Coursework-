@@ -6,6 +6,7 @@ I decided to code this game because I liked a card game example in a book and wa
 ## How to Play
 To play, decide whether or not to hit or stay and get a total value of '21', between one player and the dealer, to win. If the dealer has a higher number than the player, the dealer wins. When the player has a higher number than the dealer, the player wins. If either of them go over '21' they are going to bust. At the end of the game click 'Y' or 'N' when deciding to play again or not.
 ## Code Snip 
+This piece of code shows the players side of the game. 
 ```
 	public static int player(int[] deck, String[][] numbervalue){
 		Scanner input = new Scanner(System.in);
@@ -39,25 +40,36 @@ To play, decide whether or not to hit or stay and get a total value of '21', bet
 			boolean again = true;
 			while (again) {
 				if(hp.equals("h")|| (hp.equals("hit")))	{
-				int num = (int)((Math.random() * 13) -1);
-				totalvalue += Integer.parseInt(numbervalue[num][1]);
-				System.out.println("New total is " + totalvalue);
-				System.out.println("Hit or Stay?");
-				hp = input.next();
-				hp = hp.toLowerCase();
-				}	
-				else if(totalvalue > 21){
-					System.out.println("Bust");
-					break;
+					int num = (int)((Math.random() * 13) -1);
+					totalvalue += Integer.parseInt(numbervalue[num][1]);
+					System.out.println("New total is " + totalvalue);
+					if(totalvalue > 21){
+						//System.out.println("New total is " + totalvalue);
+						System.out.println("Bust");
+						break;
+					}
+					System.out.println("Hit or Stay?");
+					hp = input.next();
+					hp = hp.toLowerCase();
 				}
-				else{
+					
+//				if(totalvalue > 21){
+//					System.out.println("New total is " + totalvalue);
+//					System.out.println("Bust");
+//					break;
+//				}
+				if(hp.equals("s") || hp.equals("stay")) {
 					System.out.println("Stay");
 					again = false;
 				}
 			}
 			System.out.println("Player total= " +totalvalue);
 			System.out.println('\n');
-			return totalvalue;
+			if(totalvalue > 21)
+				return 0;
+			else
+				return totalvalue;
 			
 	}//end player method
+
   ```
